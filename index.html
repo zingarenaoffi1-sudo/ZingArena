@@ -2,77 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="monetag" content="45e2da3c7b066b731798e3cd2591c60c">
-    <title>Zing.Arena Dashboard</title>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zing Arena - Hub</title>
     <style>
-        body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding-top: 50px; margin: 0; }
-        .app-container { width: 90%; max-width: 400px; }
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .menu-item { background: #1e293b; padding: 20px; border-radius: 20px; text-align: center; cursor: pointer; transition: 0.3s; border: 1px solid #334155; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3); }
-        .menu-item:hover { background: #3b82f6; transform: translateY(-5px); }
-        .hidden { display: none; }
-        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #3b82f6; color: white; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        h2 { color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; }
+        h3 { color: #f8fafc; margin-top: 25px; }
+        ul { list-style: none; padding: 0; }
+        li { background: #1e293b; padding: 15px; margin-bottom: 10px; border-radius: 10px; border-left: 4px solid #3b82f6; }
+        .download-btn { display: block; background: #22c55e; color: white; padding: 18px; text-align: center; text-decoration: none; font-weight: bold; border-radius: 15px; margin-top: 30px; font-size: 18px; }
     </style>
 </head>
 <body>
 
-<div class="app-container" id="loginDiv">
-    <h2 style="text-align:center">Zing.Arena Login</h2>
-    <button onclick="googleLogin()">Login with Google</button>
-</div>
+    <div class="container">
+        <h2>Zing Arena Hub</h2>
+        <p>Zing Arena ek ultimate All-in-One app hai jo aapke daily digital tasks ko asaan banata hai.</p>
+        
+        <h3>Modules & Features:</h3>
+        <ul>
+            <li>🚀 <b>Dashboard:</b> App ka main control center aur navigation.</li>
+            <li>🌐 <b>Browser:</b> Fast, secure, aur ad-free browsing ka anubhav.</li>
+            <li>🎬 <b>Video Player:</b> Bina kisi rukawat ke apni favourite videos dekhein.</li>
+            <li>🔤 <b>Name Generator:</b> Gaming aur social media ke liye unique aur cool naam.</li>
+        </ul>
 
-<div class="app-container hidden" id="appDiv">
-    <h2 style="text-align:center">Zing.Arena Hub</h2>
-    <div class="menu-grid" id="mainMenu">
-        <div class="menu-item" onclick="window.location.href='player.html'"><span>🎬</span> Player</div>
-        <div class="menu-item" onclick="window.location.href='namegen.html'"><span>🔤</span> Name Gen</div>
-        <div class="menu-item" onclick="window.location.href='tools.html'"><span>🛠️</span> Tools</div>
-        <div class="menu-item" onclick="window.location.href='browser.html'"><span>🌐</span> Browser</div>
+        <h3>Professional Tools:</h3>
+        <ul>
+            <li>⏱️ <b>Age Calculator:</b> Apni sahi umar aur agla birthday calculate karein.</li>
+            <li>🎨 <b>Color Picker:</b> Professional design ke liye perfect colors chunein.</li>
+            <li>🔄 <b>Converter:</b> Apni files ko asani se format convert karein.</li>
+            <li>😊 <b>Emoji Maker:</b> Apne khud ke custom aur unique emojis banayein.</li>
+            <li>🖼️ <b>Image Compressor:</b> Bina quality khoye photo ka size kam karein.</li>
+            <li>📄 <b>JPG to PDF:</b> Photos ko asani se PDF mein convert karein.</li>
+            <li>🔑 <b>PassGen:</b> Strong aur secure passwords generate karein.</li>
+            <li>📂 <b>PDF Merger:</b> Multiple PDF files ko ek saath jodein.</li>
+            <li>📸 <b>PDF to JPG:</b> PDF files ko images mein badlein.</li>
+            <li>📱 <b>QR Tool:</b> Fast QR code scanner aur generator.</li>
+        </ul>
+
+        <a href="YOUR_APK_LINK_HERE" class="download-btn">📥 Download Latest APK</a>
     </div>
-    <br>
-    <button onclick="auth.signOut().then(() => location.reload())" style="background:#ef4444;">Logout</button>
-</div>
 
-<script>
-    // Ads ka code
-    window.onclick = function() {
-        if (!sessionStorage.getItem('adShown')) {
-            window.open('https://omg10.com/4/11073072', '_system');
-            sessionStorage.setItem('adShown', 'true');
-        }
-    };
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyDg-_--DQoINvqsMOAYfbwEnDyvMgH88-w",
-        authDomain: "zing-arena.firebaseapp.com",
-        databaseURL: "https://zing-arena-default-rtdb.firebaseio.com",
-        projectId: "zing-arena",
-        storageBucket: "zing-arena.firebasestorage.app",
-        messagingSenderId: "749170646467",
-        appId: "1:749170646467:web:1d279de6a84a0340bcf176"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    function googleLogin() { 
-        auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()); 
-    }
-
-    auth.getRedirectResult().then(result => {
-        if (result.user) {
-            document.getElementById('loginDiv').classList.add('hidden');
-            document.getElementById('appDiv').classList.remove('hidden');
-        }
-    }).catch(error => console.log(error));
-
-    auth.onAuthStateChanged(user => {
-        if(user) {
-            document.getElementById('loginDiv').classList.add('hidden');
-            document.getElementById('appDiv').classList.remove('hidden');
-        }
-    });
-</script>
-</body>
+</body> 
 </html>
