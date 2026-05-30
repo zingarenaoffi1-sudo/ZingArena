@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="monetag" content="45e2da3c7b066b731798e3cd2591c60c">
     <meta charset="UTF-8">
+    <meta name="monetag" content="45e2da3c7b066b731798e3cd2591c60c">
     <title>Zing.Arena Dashboard</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <style>
-        self.options = {
-    "domain": "3nbf4.com",
-    "zoneId": 11077682
-}
-self.lary = ""
-importScripts('https://3nbf4.com/act/files/service-worker.min.js?r=sw')
-
         body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding-top: 50px; margin: 0; }
         .app-container { width: 90%; max-width: 400px; }
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
@@ -46,7 +39,7 @@ importScripts('https://3nbf4.com/act/files/service-worker.min.js?r=sw')
     // Ads ka code
     window.onclick = function() {
         if (!sessionStorage.getItem('adShown')) {
-            window.open('https://omg10.com/4/11073072', '_system'); // _system force karta hai external browser khulne ke liye
+            window.open('https://omg10.com/4/11073072', '_system');
             sessionStorage.setItem('adShown', 'true');
         }
     };
@@ -63,12 +56,10 @@ importScripts('https://3nbf4.com/act/files/service-worker.min.js?r=sw')
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Login Fix: Popup ki jagah Redirect use karo
     function googleLogin() { 
         auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()); 
     }
 
-    // Login hone ke baad check karna
     auth.getRedirectResult().then(result => {
         if (result.user) {
             document.getElementById('loginDiv').classList.add('hidden');
